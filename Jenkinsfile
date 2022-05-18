@@ -3,11 +3,11 @@ pipeline {
   pollSCM('* * * * *')
     }
     agent any
-    tools{
+    tools {
         maven 'M2_HOME'
     }
     stages {
-        stage('Build') {
+        stage('maven package') {
             steps {
                 sh 'mvn clean'
                 sh 'mvn install'
@@ -22,7 +22,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy Step'
-                sleep 10
             }
         }
         stage('Docker') {
